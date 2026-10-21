@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fibonacci Series and Factorial</title>
+</head>
+<body>
+    <h2>Fibonacci Series and Factorial</h2>
+    <label for="num">Enter a number:</label>
+    <input type="number" id="num" name="num">
+    <button onclick="calculateFibonacci()">Calculate Fibonacci</button>
+    <p id="fibonacciResult"></p>
+    <p id="factorial"></p>
+    <script>
+        function calculateFibonacci() {
+            const num = parseInt(document.getElementById('num').value);
+            const fibonacciResult = document.getElementById('fibonacciResult');
+            const factorialResult = document.getElementById('factorial');
+
+            if (isNaN(num) || num < 0) {
+                fibonacciResult.textContent = 'Please enter a non-negative integer.';
+                factorialResult.textContent = '';
+                return;
+            }
+
+            // Calculate Fibonacci series
+            let fibSeries = [];
+            for (let i = 0; i < num; i++) {
+                if (i === 0) {
+                    fibSeries.push(0);
+                } else if (i === 1) {
+                    fibSeries.push(1);
+                } else {
+                    fibSeries.push(fibSeries[i - 1] + fibSeries[i - 2]);
+                }
+            }
+            fibonacciResult.textContent = `Fibonacci series up to ${num}: ${fibSeries.join(', ')}`;
+
+            // Calculate Factorial
+            let factorial = 1;
+            for (let i = 1; i <= num; i++) {
+                factorial *= i;
+            }
+            factorialResult.textContent = `Factorial of ${num} is: ${factorial}`;
+        }
+
+</body>
+</html>
