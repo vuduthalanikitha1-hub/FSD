@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Array Operations</title>
+</head>
+<body>
+<h2>Array Operations using JavaScript Functions</h2>
+
+<label>Enter Array Elements (comma separated):</label><br><br>
+<input type="text" id="arrayInput" size="40"
+placeholder="10,20,30,40">
+<br><br>
+
+<button onclick="displayArray()">Display</button>
+<button onclick="insertElement()">Insert</button>
+<button onclick="deleteElement()">Delete</button>
+<button onclick="searchElement()">Search</button>
+
+<p id="result"></p>
+
+<script>
+function getArray() {
+    return document.getElementById("arrayInput").value.split(",");
+}
+
+function displayArray() {
+    let arr = getArray();
+    document.getElementById("result").innerHTML =
+        "Array Elements: " + arr.join(", ");
+}
+
+function insertElement() {
+    let arr = getArray();
+    let value = prompt("Enter element to insert:");
+    if (value === null) return;
+
+    arr.push(value);
+    document.getElementById("arrayInput").value = arr.join(",");
+    document.getElementById("result").innerHTML =
+        "After Insertion: " + arr.join(", ");
+}
+
+function deleteElement() {
+    let arr = getArray();
+    let value = prompt("Enter element to delete:");
+    if (value === null) return;
+
+    let index = arr.indexOf(value);
+
+    if (index !== -1) {
+        arr.splice(index, 1);
+        document.getElementById("arrayInput").value = arr.join(",");
+        document.getElementById("result").innerHTML =
+            "After Deletion: " + arr.join(", ");
+    } else {
+        document.getElementById("result").innerHTML =
+            value + " not found in the array.";
+    }
+}
+
+function searchElement() {
+    let arr = getArray();
+    let value = prompt("Enter element to search:");
+    if (value === null) return;
+
+    if (arr.indexOf(value) !== -1) {
+        document.getElementById("result").innerHTML =
+            value + " found in the array.";
+    } else {
+        document.getElementById("result").innerHTML =
+            value + " not found in the array.";
+    }
+}
+</script>
+</body>
+</html>
