@@ -1,0 +1,83 @@
+import{useState}form"react";
+function App(){
+    const questions =[
+    {
+        question:"Which language is used for React development?",
+        option:["Java","Python","JavaScript","C++"],
+        answer:"JavaScript"   
+    }
+    { 
+      question:"Which Hook is used to manage state in React?",
+        option:["useEffect","useState","useRef","useMemo"],
+        answer:"useState"
+    }
+    {
+      question:"Which command is used to run a Vite React application?",
+        option:[
+        "npm start",
+        "npm run dev",
+        "node app",
+        "react start",
+        ],
+        answer:"npm run dev"
+    }
+    ];
+    const[answers,setAnswers]=useState({});
+    const[score,setScore]=useState(null);
+    const handleChange=(questionIndex,option)=> {
+        setAnswers({
+            ..answers,
+            [ questionIndex]:option
+        });
+    };
+    const submitQuiz=()=>{
+        let count =0;
+        questions.forEach((question,index)=>{
+            if(answers[index]===question.answer){
+                count++;
+            }       
+         });
+         setScore(count);
+        };
+        return(
+            <div>
+                <h2>Online Quiz Application</h2>
+                {
+                 questons.map((question,index)=>
+                 <div key={index}>
+                    <h4>
+                        <div class="">index +1</div>
+                        question.question
+                    </h4>
+                    {
+                        question.options.map((option)=>(
+                            <div key={option}>
+                                <input
+                                 type="radio"
+                                 name="{'question${index}"}
+                                 value="{option}"
+                                 onChange="{()=>
+                                handlechange(index,option)
+                            }"
+                            />
+                            option
+                            </div>
+                        ))
+                    }
+                 </div>
+                }
+                <BR/>
+                <buttion onClick="{submitQuiz}">
+                    Submit
+                </button>
+                {
+                    score!==null &&
+                    <h3>
+                        Your Score:{score}/{questions.length}
+                    </h3>
+                }
+            </div>
+        );
+
+    }
+    export default App;     
